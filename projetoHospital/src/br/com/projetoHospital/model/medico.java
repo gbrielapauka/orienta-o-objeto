@@ -1,11 +1,10 @@
+
 package br.com.projetoHospital.model;
+import java.util.ArrayList;
+import java.util.List;
 
-public class medico {
-	package br.com.projetoHospital.model;
 
-	import java.util.List;
-
-	public class Medico {
+public class Medico {
 		
 		private int id;
 		private String nome;
@@ -14,7 +13,7 @@ public class medico {
 		private List<Paciente> pacientes;
 		
 		public Medico () {
-			
+			this.pacientes = new ArrayList<Paciente>();
 		}
 
 		public int getId() {
@@ -63,20 +62,43 @@ public class medico {
 			System.out.println("\nPaciente cadastrado com sucesso!");
 		}
 		
-		// Melhorar o método para que seja possível imprimir o relatório de 3 formas, sendo:
-		// - todos os pacientes
-		// - somente os pacientes internados
-		// - somente os pacientes não internados
-		public void imprimirRelatorioPacientes () {
-			
-			System.out.println("- Relatório de Pacientes: dr(a) " + this.nome + " -");
-			for (Paciente paciente : this.pacientes) {
-				paciente.exibirDadosPaciente();
+		public void imprimirRelatorioPacientes (int tipoRelatorio) {
+
+			if (this.pacientes.size() == 0) {
+				System.out.println("Sem pacientes cadastrados");
+			} else {
+				//Tipos de Relatórios:
+				// 1 - imprimir todos
+				// 2 - imprimir internados
+				// 3 - imprimir não internados
+				switch(tipoRelatorio) {
+				case 1:
+					System.out.println("\n\n- Relatório de Pacientes: dr(a) " + this.nome + " -");
+					for (Paciente paciente : this.pacientes) {
+						paciente.exibirDadosPaciente();
+					}
+					break;
+				case 2:
+					System.out.println("\n\n- Relatório de Pacientes internados: dr(a) " + this.nome + " -");
+					for (Paciente paciente : this.pacientes) {
+						if (paciente.isInternado() == true) {
+							paciente.exibirDadosPaciente();
+						}
+					}
+					break;
+				case 3:
+					System.out.println("\n\n- Relatório de Pacientes não internados: dr(a) " + this.nome + " -");
+					for (Paciente paciente : this.pacientes) {
+						if (!paciente.isInternado() == false ) {
+							paciente.exibirDadosPaciente();
+						}
+					}
+					break;
+				default:
+					System.out.println("Tipo de relatório indisponível!");
+				}
 			}
-			
 		}
 		
-		// Implementar o método 'realizarAltaPaciente'
-
-	}
+		
 }

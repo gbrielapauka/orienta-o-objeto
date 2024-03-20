@@ -15,7 +15,7 @@ public class Paciente {
 	}
 	
 	// Construtor com parâmetros
-	public Paciente(int id, String nome, String sexo) {
+	public Paciente(int id, String nome, int idade, String sexo, Boolean isInternado) {
 		this.id = id;
 		this.nome = nome;
 		this.idade = idade;
@@ -63,5 +63,19 @@ public class Paciente {
 	
 	public void setIsInternado (boolean isInternado) {
 		this.isInternado = isInternado;
+	}
+
+	public void exibirDadosPaciente () {
+		System.out.println("-------------------------------------------");
+		System.out.println("Código: " + this.id + " Paciente: " + this.nome);
+		System.out.println("Idade: " + this.idade + " anos.");
+
+		if (this.idade >= 60) {
+			System.out.println("Paciente tem direito à acompanhante!");
+		} else {
+			System.out.println("Paciente não tem direito à acompanhante!");
+		}
+
+		System.out.println("-------------------------------------------");
 	}
 }
