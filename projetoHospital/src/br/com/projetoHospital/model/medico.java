@@ -100,5 +100,22 @@ public class Medico {
 			}
 		}
 		
-		
+		// - Implementar método para alta do pacinete
+		// Descobrir qual paciente receberá alta
+		// Descobrir se o paciente está internado ou não
+		// Atualizar a propriedade que indica a internação 
+				
+		public void realizarAltaPaciente(int idPaciente) {
+			for (Paciente paciente : this.pacientes){
+				if (paciente.getId() == idPaciente) {
+					if (paciente.isInternado()) {
+						paciente.setIsInternado(false);
+						System.out.println("Alta concedida para o paciente: " + paciente.getNome());
+						return;
+					} else {
+						System.out.println("O paciente já está fora do hospital.");
+					}
+				}
+			}
+		}		
 }
